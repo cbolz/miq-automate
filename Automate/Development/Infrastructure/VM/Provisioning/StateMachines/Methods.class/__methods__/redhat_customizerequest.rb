@@ -41,20 +41,4 @@ end
 
 prov.set_option(:number_of_sockets, 1)
 
-dialog_vlan = prov.get_option(:dialog_vm_vlan)
-
-$evm.log("info", "VLAN list from Dialog: #{dialog_vlan}")
-
-vlan_list={}
-
-t = dialog_vlan.split('|')
-t.each { |u|
-    k,v=u.split('=')
-    vlan_list[k]=v
-}
-
-$evm.log("info", "vlan_list: #{vlan_list}")
-
-prov.set_option(:vlan,[vlan_list["RHV"],vlan_list["RHV"]])
-
 prov.attributes.sort.each { |k,v| $evm.log("info", "Prov attributes: #{v}: #{k}") }
